@@ -278,7 +278,7 @@ check_config() {
         # access all arguments to the erl command EXCEPT '-args_file',
         # so in order to get access to this file location from within
         # the vm, we need to pass it in twice.
-        CONFIG_ARGS=" -config $RUNNER_ETC_DIR/app.config -args_file $RUNNER_ETC_DIR/vm.args -vm_args $RUNNER_ETC_DIR/vm.args "
+        CONFIG_ARGS=" -config $RUNNER_ETC_DIR/sys.config -args_file $RUNNER_ETC_DIR/vm.args -vm_args $RUNNER_ETC_DIR/vm.args "
     else
         CONFIG_ARGS=`$CUTTLEFISH_COMMAND_PREFIX generate`
         if [ "$?" -ne 0 ]; then
