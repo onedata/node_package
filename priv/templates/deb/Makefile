@@ -4,13 +4,10 @@
 export
 
 default:
-	echo "Makefile"
-	echo ${REL_TYPE}
-	echo ${PKG_VARS_CONFIG}
-	echo ${PKG_ID}
 	ln -sf $(PKG_ID).tar.gz ../{{package_name}}_$(PKG_VERSION).orig.tar.gz
 	export DEBFULLNAME="{{vendor_contact_name}}"; \
 	export DEBEMAIL="{{vendor_contact_email}}"; \
+	export REL_TYPE="${REL_TYPE}"; \
 	dch  --create --package {{package_name}} -v "$(PKG_VERSION)-$(PKG_BUILD)" \
              "Build from $(PKG_VERSION)";\
 	debuild --prepend-path=$(ERLANG_BIN) \
