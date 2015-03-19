@@ -8,5 +8,5 @@ bootstrap:
 	mkdir -p $(PKG_ID)/solaris
 	cd $(PKG_ID)/solaris && $(REBAR) -v create \
                               template_dir=../$(DEPS_DIR)/node_package/priv/templates \
-                              template_vars=../pkg.vars.config template=solaris
+                              template_vars=../$(PKG_VARS_CONFIG) template=solaris
 	$(MAKE) -C $(PKG_ID) -f solaris/Makefile

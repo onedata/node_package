@@ -8,5 +8,5 @@ bootstrap:
 	mkdir -p $(PKG_ID)/smartos
 	cd $(PKG_ID)/smartos && $(REBAR) -v create \
                               template_dir=../$(DEPS_DIR)/node_package/priv/templates \
-                              template_vars=../pkg.vars.config template=smartos
+                              template_vars=../$(PKG_VARS_CONFIG) template=smartos
 	$(MAKE) -C $(PKG_ID) -f smartos/Makefile

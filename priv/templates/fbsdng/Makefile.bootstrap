@@ -8,5 +8,5 @@ bootstrap:
 	mkdir -p $(PKG_ID)/fbsdng
 	cd $(PKG_ID)/fbsdng && $(REBAR) -v create \
                                 template_dir=../$(DEPS_DIR)/node_package/priv/templates \
-                                template_vars=../pkg.vars.config template=fbsdng
+                                template_vars=../$(PKG_VARS_CONFIG) template=fbsdng
 	$(MAKE) -C $(PKG_ID) -f fbsdng/Makefile
