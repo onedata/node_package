@@ -82,6 +82,10 @@ PKG_BUILD    ?= 1
 
 ## Call platform dependent makefile
 ostype: varcheck setversion
+	echo "main Makefile"
+	echo ${REL_TYPE}
+	echo ${PKG_VARS_CONFIG}
+	echo ${PKG_ID}
 	$(if $(PKGERDIR),,$(error "Operating system '$(OS)' not supported by node_package"))
 	$(MAKE) -f $(PKG_ID)/$(DEPS_DIR)/node_package/priv/templates/$(PKGERDIR)/Makefile.bootstrap
 
