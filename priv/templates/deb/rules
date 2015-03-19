@@ -17,7 +17,6 @@ export REL_TYPE
 ## note that it is necessary to use overlay_vars relative to .. as
 ## the generate command EXECUTES in rel/
 build:
-	echo "!!!!!!!!!!" ${REL_TYPE}
 	unset CC CFLAGS CPPFLAGS LDFLAGS CXX CXXFLAGS \
 		&& OVERLAY_VARS="overlay_vars=../debian/vars.config" make rel
 	touch build
@@ -70,7 +69,7 @@ install: build
 	install -m755 debian/init.script \
               debian/{{package_name}}/etc/init.d/{{package_install_name}}
 
-	dh_shlibdeps
+	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info #todo check why onepanel build fails without this option
 
 # We have nothing to do by default.
 binary-indep: install build-stamp
