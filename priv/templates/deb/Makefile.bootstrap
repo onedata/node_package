@@ -5,7 +5,6 @@ export
 
 bootstrap:
 	mkdir -p $(PKG_ID)/debian
-
 	cd $(PKG_ID)/debian && $(REBAR) -v create \
                               template_dir=../$(DEPS_DIR)/node_package/priv/templates \
                               template_vars=../$(PKG_VARS_CONFIG) template=deb

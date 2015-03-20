@@ -1,7 +1,3 @@
-##
-## Export all variables to sub-invocation
-##
-export
 
 default:
 	ln -sf $(PKG_ID).tar.gz ../{{package_name}}_$(PKG_VERSION).orig.tar.gz
