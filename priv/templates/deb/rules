@@ -22,7 +22,7 @@ build:
 	touch build
 
 clean:
-  rm -rf deps
+	rm -rf deps
 	dh_clean
 	rm -f build
 	make clean
