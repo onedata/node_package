@@ -74,7 +74,7 @@ cat > rpm.vars.config <<EOF
 EOF
 
 %build
-OVERLAY_VARS="overlay_vars=../rpm.vars.config" make rel
+REL_TYPE={{rel_type_}} OVERLAY_VARS="overlay_vars=../rpm.vars.config" make rel
 
 %install
 %define relpath       %{_builddir}/%{buildsubdir}/rel/{{package_install_name}}
