@@ -8,10 +8,10 @@ default:
 	debuild --prepend-path=$(ERLANG_BIN) \
 		-e REVISION=$(PKG_VERSION) \
 		-e RELEASE=$(PKG_BUILD) \
-    -e REBAR=$(REBAR) \
+		-e REBAR=$(REBAR) \
 		-e REL_TYPE=$(REL_TYPE) \
 		{{debuild_extra_options}} \
-		-uc -us
+		-uc -us -S
 	mkdir -p ../packages
 	cd .. && mv *$(PKG_VERSION)-$(PKG_BUILD)_*.deb packages
 	cd ../packages && \

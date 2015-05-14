@@ -19,17 +19,20 @@
 ## -------------------------------------------------------------------
 
 Name: {{package_name}}
-Version: %{_version}
-Release: %{_release}%{?dist}
+Version: {{version_}}
+Release: {{release_}}%{?dist}
 License: {{license_type}}
 Group: Development/Libraries
-Source: %{_tarname}
+Source: {{tarname_}}
+Source1: init.script
 URL: {{vendor_url}}
 Vendor: {{vendor_name}}
 Packager: {{vendor_contact_name}} <{{vendor_contact_email}}>
-BuildRoot: %{_tmppath}/%{name}-%{_revision}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-{{revision_}}-%{release}-root
 Summary: {{package_shortdesc}}
 Obsoletes: {{package_name}}
+
+BuildRequires: erlang-erts{{rpm_build_depends}}
 
 %description
 {{package_desc}}
@@ -47,7 +50,7 @@ Obsoletes: {{package_name}}
 
 
 %prep
-%setup -q -n %{_tarname_base}
+%setup -q -n {{tarname_base_}}
 
 # Setup vars.config like other platforms, but do it inside of spec file
 cat > rpm.vars.config <<EOF
@@ -67,7 +70,7 @@ cat > rpm.vars.config <<EOF
 {runner_patch_dir,  "%{platform_lib_dir}/{{package_patch_dir}}"}.
 {runner_user,       "{{package_runner_user}}"}.
 {pipe_dir,          "%{_localstatedir}/run/{{package_install_name}}/"}.
-{app_version,       "%{_revision}"}.
+{app_version,       "{{revision_}}"}.
 EOF
 
 %build
@@ -114,7 +117,7 @@ cp -R %{relpath}/data/* \
       %{buildroot}%{_localstatedir}/lib/{{package_install_name}}
 
 mkdir -p %{buildroot}%{_sysconfdir}/init.d
-install -m755 %{_topdir}/init.script  %{buildroot}%{_sysconfdir}/init.d/{{package_install_name}}
+install -m755 %SOURCE1 %{buildroot}%{_sysconfdir}/init.d/{{package_install_name}}
 
 # Needed to work around check-rpaths which seems to be hardcoded into recent
 # RPM releases

@@ -13,9 +13,10 @@
              {vendor_contact_name, "vendor_contact"},
              {vendor_contact_email, "vendor_contact_email"},
              {bin_or_sbin, "bin"}
+             %dynamic_params%
             ]
 }.
 {template, "Makefile", "Makefile"}.
-{template, "specfile", "specfile"}.
+{template, "specfile", "package.spec"}.
 {template, "rhel.init.script", "rhel.init.script"}.
 {template, "suse.init.script", "suse.init.script"}.
