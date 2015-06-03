@@ -13,6 +13,7 @@ default:
 		{{debuild_extra_options}} \
 		-uc -us -S
 	mkdir -p ../packages
+	cd .. && sg sbuild -c "sbuild -sd sid -j4 *$(PKG_VERSION)-$(PKG_BUILD)*.dsc"
 	cd .. && mv *$(PKG_VERSION)-$(PKG_BUILD)_*.deb packages
 	cd ../packages && \
 		for debfile in *.deb; do \
