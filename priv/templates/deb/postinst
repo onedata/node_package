@@ -37,6 +37,7 @@ chmod 0755 /usr/lib/{{package_install_name}}/erts-*/bin/nodetool
 
 case "$1" in
     configure)
+        {{post_install_deb_script}}
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
