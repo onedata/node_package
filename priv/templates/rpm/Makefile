@@ -15,8 +15,8 @@ endif
 default: init.script
 	mkdir -p packages
 
-	mock --buildsrpm --spec package.spec --sources $(PWD) --resultdir $(PWD)/packages
-	mock --rebuild packages/*.src.rpm --resultdir $(PWD)/packages
+	mock --root $(DISTRIBUTION) --buildsrpm --spec package.spec --sources $(PWD) --resultdir $(PWD)/packages
+	mock --root $(DISTRIBUTION) --rebuild packages/*.src.rpm --resultdir $(PWD)/packages
 	cd packages && \
 		for rpmfile in *.rpm; do \
 			sha256sum $${rpmfile} > $${rpmfile}.sha \

@@ -13,7 +13,7 @@ default:
 		{{debuild_extra_options}} \
 		-uc -us -S
 	mkdir -p ../packages
-	cd .. && sg sbuild -c "sbuild -sd sid -j4 *$(PKG_VERSION)-$(PKG_BUILD).dsc"
+	cd .. && sg sbuild -c "sbuild -sd $(DISTRIBUTION) -j4 *$(PKG_VERSION)-$(PKG_BUILD).dsc"
 	cd .. && mv *$(PKG_VERSION).orig.tar.gz packages
 	cd .. && mv *$(PKG_VERSION)-$(PKG_BUILD).dsc packages
 	cd .. && mv *$(PKG_VERSION)-$(PKG_BUILD).diff.gz packages
