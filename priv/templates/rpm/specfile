@@ -32,6 +32,7 @@ BuildRoot: %{_tmppath}/%{name}-{{revision_}}-%{release}-root
 Summary: {{package_shortdesc}}
 Obsoletes: {{package_name}}
 
+Requires: initscripts
 BuildRequires: erlang-erts{{rpm_build_depends}}
 
 %description
