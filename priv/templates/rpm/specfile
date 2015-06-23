@@ -32,7 +32,7 @@ BuildRoot: %{_tmppath}/%{name}-{{revision_}}-%{release}-root
 Summary: {{package_shortdesc}}
 Obsoletes: {{package_name}}
 
-Requires: initscripts
+Requires: initscripts{{rpm_depends}}
 BuildRequires: erlang-erts{{rpm_build_depends}}
 
 %description
@@ -158,6 +158,8 @@ chmod 0755 %{_libdir}/{{package_install_name}}/lib/env.sh
 /sbin/chkconfig --add {{package_install_name}}
 /sbin/chkconfig {{package_install_name}} off
 
+# Run user-defined init scripts
+{{post_install_rpm_script}}
 
 %preun
 # Pre-uninstall script
