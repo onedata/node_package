@@ -22,7 +22,8 @@ DYNAMIC_PARAMS := ,{version_, \"$(PKG_VERSION_NO_H)\"}\
                   ,{release_, \"$(PKG_BUILD)\"}\
                   ,{tarname_, \"$(PKG_ID).tar.gz\"}\
                   ,{tarname_base_, \"$(PKG_ID)\"}\
-                  ,{rel_type_, \"$(REL_TYPE)\"}
+                  ,{rel_type_, \"$(REL_TYPE)\"}\
+                  ,{couchbase_server_service_, \"$(COUCHBASE_SERVER_SERVICE)\"}
 
 $(RPM_TEMPLATE_DIR)/rpm.template: $(RPM_TEMPLATE_DIR)/rpm.template.template
 	sed "s/%dynamic_params%/$(DYNAMIC_PARAMS)/" $< > $@
