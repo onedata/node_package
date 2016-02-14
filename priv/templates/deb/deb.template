@@ -8,6 +8,7 @@
              {package_install_group, "package_install_group"},
              {package_replacement_line, "{{package_replacement_line_debian}}"},
              {package_conflicts_line, "{{package_conflicts_line_debian}}"},
+             {package_rel_type, "package_rel_type"},
              {vendor_name, "vendor_name"},
              {vendor_url, "vendor_url"},
              {vendor_contact_name, "vendor_contact_name"},

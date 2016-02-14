@@ -11,14 +11,13 @@
 # Uncomment this to turn on verbose mode.
 export DH_VERBOSE=1
 
-export REL_TYPE
-
 ## Clear variables that may confound our build of sub-projects; also
 ## note that it is necessary to use overlay_vars relative to .. as
 ## the generate command EXECUTES in rel/
 build:
 	unset CC CFLAGS CPPFLAGS LDFLAGS CXX CXXFLAGS \
-		&& OVERLAY_VARS="overlay_vars=../debian/vars.config" make rel
+		&& REL_TYPE={{package_rel_type}} \
+                   OVERLAY_VARS="overlay_vars=../debian/vars.config" make rel
 	touch build
 
 clean:

@@ -6,6 +6,7 @@
              {package_install_user, "package_install_user"},
              {package_install_user_desc, "package_install_user_desc"},
              {package_install_group, "package_install_group"},
+             {package_rel_type, "package_rel_type"},
              {license_type, "license_type"},
              {license_full_text, "license_full_text"},
              {vendor_name, "vendor_name"},

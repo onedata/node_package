@@ -9,7 +9,6 @@ default:
 		-e REVISION=$(PKG_VERSION) \
 		-e RELEASE=$(PKG_BUILD) \
 		-e REBAR=$(REBAR) \
-		-e REL_TYPE=$(REL_TYPE) \
 		{{debuild_extra_options}} \
 		-uc -us -S
 	mkdir -p ../packages

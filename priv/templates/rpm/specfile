@@ -73,12 +73,11 @@ cat > rpm.vars.config <<EOF
 {runner_user,       "{{package_runner_user}}"}.
 {pipe_dir,          "%{_localstatedir}/run/{{package_install_name}}/"}.
 {app_version,       "{{revision_}}"}.
-{couchbase_server_service, "{{couchbase_server_service_}}"}.
 EOF
 
 %build
 {{rpm_build}}
-REL_TYPE={{rel_type_}} OVERLAY_VARS="overlay_vars=../rpm.vars.config" make rel
+REL_TYPE={{package_rel_type}} OVERLAY_VARS="overlay_vars=../rpm.vars.config" make rel
 
 %install
 %define relpath       %{_builddir}/%{buildsubdir}/rel/{{package_install_name}}
