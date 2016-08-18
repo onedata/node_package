@@ -137,15 +137,15 @@ $(BUILD_STAGE_DIR): buildrel
 	@echo "Copying rel directory to staging directory"
 	mkdir -p $@
 	mkdir -p $(PBIN_DIR)
-	cp -R rel/{{package_install_name}}/bin/* $(PBIN_DIR)
+	cp -R _build/package/rel/{{package_install_name}}/bin/* $(PBIN_DIR)
 	mkdir -p $(PETC_DIR)
-	cp -R rel/{{package_install_name}}/etc/* $(PETC_DIR)
+	cp -R _build/package/rel/{{package_install_name}}/etc/* $(PETC_DIR)
 	mkdir -p $(PLIB_DIR)
-	cp -R rel/{{package_install_name}}/lib $(PLIB_DIR)
-	cp -R rel/{{package_install_name}}/erts-* $(PLIB_DIR)
-	cp -R rel/{{package_install_name}}/releases $(PLIB_DIR)
+	cp -R _build/package/rel/{{package_install_name}}/lib $(PLIB_DIR)
+	cp -R _build/package/rel/{{package_install_name}}/erts-* $(PLIB_DIR)
+	cp -R _build/package/rel/{{package_install_name}}/releases $(PLIB_DIR)
 	mkdir -p $(PDATA_DIR)
-	cp -R rel/{{package_install_name}}/data/* $(PDATA_DIR)
+	cp -R _build/package/rel/{{package_install_name}}/data/* $(PDATA_DIR)
 	mkdir -p $(PLOG_DIR)
 
 
@@ -153,8 +153,8 @@ $(BUILD_STAGE_DIR): buildrel
 #  * Ensure all binaries are executable
 #  * copy the vars.config over for build config
 buildrel:
-	OVERLAY_VARS="overlay_vars=../fbsd/vars.config" $(MAKE) rel
-	chmod 0755 rel/{{package_install_name}}/bin/* rel/{{package_install_name}}/erts-*/bin/*
+	OVERLAY_VARS="--overlay_vars=fbsd/vars.config" $(MAKE) rel
+	chmod 0755 _build/package/rel/{{package_install_name}}/bin/* rel/{{package_install_name}}/erts-*/bin/*
 
 $(BUILDDIR):
 	mkdir -p $@

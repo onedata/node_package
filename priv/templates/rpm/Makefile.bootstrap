@@ -4,12 +4,12 @@
 ##
 export
 
-TEMPLATE_DIR := $(PKG_ID)/$(DEPS_DIR)/node_package/priv/templates
+TEMPLATE_DIR := $(PKG_ID)/node_package/priv/templates
 RPM_TEMPLATE_DIR := $(TEMPLATE_DIR)/rpm
 
 bootstrap: $(RPM_TEMPLATE_DIR)/rpm.template
-	$(REBAR) -v create \
-					template_dir=$(PKG_ID)/$(DEPS_DIR)/node_package/priv/templates \
+	$(PKG_ID)/node_package/rebar -v create \
+					template_dir=$(PKG_ID)/node_package/priv/templates \
 					template_vars=$(PKG_ID)/$(PKG_VARS_CONFIG) template=rpm
 	make -f Makefile
 

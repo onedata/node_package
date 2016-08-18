@@ -6,9 +6,9 @@ default:
 	dch  --create --package {{package_name}} -v "$(PKG_VERSION)-$(PKG_BUILD)" \
              "Build from $(PKG_VERSION)";\
 	debuild --prepend-path=$(ERLANG_BIN) \
-		-e REVISION=$(PKG_VERSION) \
-		-e RELEASE=$(PKG_BUILD) \
-		-e REBAR=$(REBAR) \
+		-e REVISION="$(PKG_VERSION)" \
+		-e RELEASE="$(PKG_BUILD)" \
+		-e REBAR="$(REBAR)" \
 		{{debuild_extra_options}} \
 		-uc -us -S
 	mkdir -p ../packages

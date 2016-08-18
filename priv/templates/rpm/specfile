@@ -77,10 +77,10 @@ EOF
 
 %build
 {{rpm_build}}
-REL_TYPE={{package_rel_type}} OVERLAY_VARS="overlay_vars=../rpm.vars.config" make rel
+OVERLAY_VARS="--overlay_vars=rpm.vars.config" make {{build_envs}} rel
 
 %install
-%define relpath       %{_builddir}/%{buildsubdir}/rel/{{package_install_name}}
+%define relpath       %{_builddir}/%{buildsubdir}/_build/package/rel/{{package_install_name}}
 %define buildroot_lib %{buildroot}%{_libdir}/{{package_install_name}}
 %define buildroot_etc %{buildroot}%{_sysconfdir}/{{package_install_name}}
 

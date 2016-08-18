@@ -17,8 +17,8 @@ export DH_VERBOSE=1
 build:
 	{{deb_build}}
 	unset CC CFLAGS CPPFLAGS LDFLAGS CXX CXXFLAGS \
-		&& REL_TYPE={{package_rel_type}} \
-                   OVERLAY_VARS="overlay_vars=../debian/vars.config" make rel
+		&& OVERLAY_VARS="--overlay_vars=debian/vars.config" \
+		make {{build_envs}} rel
 	touch build
 
 clean:
@@ -34,19 +34,19 @@ install: build
 	dh_prep
 	dh_installdirs
 
-	cp -R rel/{{package_install_name}}/lib \
+	cp -R _build/package/rel/{{package_install_name}}/lib \
               debian/{{package_name}}/usr/lib/{{package_install_name}}
 
-	cp -R rel/{{package_install_name}}/erts* \
+	cp -R _build/package/rel/{{package_install_name}}/erts* \
               debian/{{package_name}}/usr/lib/{{package_install_name}}
 
-	cp -R rel/{{package_install_name}}/releases \
+	cp -R _build/package/rel/{{package_install_name}}/releases \
               debian/{{package_name}}/usr/lib/{{package_install_name}}
 
 ## executables
-	if [ -d rel/{{package_install_name}}/bin ]; then \
+	if [ -d _build/package/rel/{{package_install_name}}/bin ]; then \
 	    mkdir -p debian/{{package_name}}/usr/{{bin_or_sbin}} && \
-	    {{#package_commands}}install -p -D -m 0755 rel/{{package_install_name}}/bin/{{name}} debian/{{package_name}}/usr/{{bin_or_sbin}}/ && \
+	    {{#package_commands}}install -p -D -m 0755 _build/package/rel/{{package_install_name}}/bin/{{name}} debian/{{package_name}}/usr/{{bin_or_sbin}}/ && \
 	    {{/package_commands}}echo -n; fi
 
 ## install man pages if they exist
@@ -59,11 +59,11 @@ install: build
 	    {{/package_commands}}echo -n; fi
 
 	mkdir -p debian/{{package_name}}/etc/{{package_install_name}}
-	cp -R rel/{{package_install_name}}/etc/* \
+	cp -R _build/package/rel/{{package_install_name}}/etc/* \
               debian/{{package_name}}/etc/{{package_install_name}}
 
 	mkdir -p debian/{{package_name}}/var/lib
-	cp -R rel/{{package_install_name}}/data/* \
+	cp -R _build/package/rel/{{package_install_name}}/data/* \
               debian/{{package_name}}/var/lib/{{package_install_name}}
 
 	install -m755 debian/init.script \

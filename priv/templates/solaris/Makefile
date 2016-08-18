@@ -26,11 +26,11 @@ buildrel:
 	@# Make sure we set our EUID properly
 	@# Ye Olde Bourne Shell on Solaris means we have to do it old school
 	echo "Using `which erl` to build"; \
-	OVERLAY_VARS="overlay_vars=../solaris/vars.config" $(MAKE) rel
-	chmod 0755 rel/{{package_install_name}}/bin/* \
-		rel/{{package_install_name}}/erts-*/bin/*
+	OVERLAY_VARS="--overlay_vars=solaris/vars.config" $(MAKE) rel
+	chmod 0755 _build/package/rel/{{package_install_name}}/bin/* \
+		_build/package/rel/{{package_install_name}}/erts-*/bin/*
 	if [ "{{bin_or_sbin}}" != "bin" ]; then \
-	   mv rel/{{package_install_name}}/bin rel/{{package_install_name}}/{{bin_or_sbin}}; fi
+	   mv _build/package/rel/{{package_install_name}}/bin rel/{{package_install_name}}/{{bin_or_sbin}}; fi
 
 depend:
 	cp $(PKGERDIR)/depend .
@@ -49,7 +49,7 @@ prototype:
 	echo "i i.preserve" >> prototype
 	echo "i r.preserve" >> prototype
 	echo '' >> prototype
-	pkgproto rel/{{package_install_name}}={{package_install_name}} >> prototype
+	pkgproto _build/package/rel/{{package_install_name}}={{package_install_name}} >> prototype
 	sed -e "s/ $(LOGNAME) .*$$/ {{package_install_user}} {{package_install_group}}/" \
 	    -e 's/f none {{package_install_name}}\/etc/e preserve {{package_install_name}}\/etc/' prototype > prototype.tmp && mv prototype.tmp prototype
 

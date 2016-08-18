@@ -15,10 +15,10 @@ if [ `uname -s` = 'SunOS' -a "${POSIX_SHELL}" != "true" ]; then
 fi
 unset POSIX_SHELL # clear it so if we invoke other scripts, they run as ksh as well
 
-RUNNER_SCRIPT_DIR={{runner_script_dir}}
+RUNNER_SCRIPT_DIR={{{runner_script_dir}}}
 RUNNER_SCRIPT=${0##*/}
 
-RUNNER_BASE_DIR={{runner_base_dir}}
+RUNNER_BASE_DIR={{{runner_base_dir}}}
 RUNNER_ETC_DIR={{runner_etc_dir}}
 RUNNER_LOG_DIR={{runner_log_dir}}
 RUNNER_LIB_DIR={{runner_lib_dir}}
