@@ -85,6 +85,10 @@ ostype: varcheck setversion
 	$(if $(PKGERDIR),,$(error "Operating system '$(OS)' not supported by node_package"))
 	$(MAKE) -f $(PKG_ID)/$(DEPS_DIR)/node_package/priv/templates/$(PKGERDIR)/Makefile.bootstrap
 
+## Set build version
+set_build_version: varcheck
+    echo "{build_version, \"$(BUILD_VERSION)\"}." >> $(PKG_ID)/node_package/priv/templates/$(PKGERDIR)/vars.config
+
 ## Set app version
 setversion: varcheck
 	echo "{app_version, \"$(PKG_VERSION)\"}." >> $(PKG_ID)/$(DEPS_DIR)/node_package/priv/templates/$(PKGERDIR)/vars.config
